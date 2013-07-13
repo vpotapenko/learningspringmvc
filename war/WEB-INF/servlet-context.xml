@@ -12,7 +12,7 @@
 
     <!-- Scans within the base package of the application for @Components to configure as beans -->
     <!-- @Controller, @Service, @Configuration, etc. -->
-    <context:component-scan base-package="xyz.sample.baremvc" />
+    <context:component-scan base-package="com.learningspringmvc" />
 
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven />
