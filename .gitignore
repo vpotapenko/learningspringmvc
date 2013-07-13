@@ -1,4 +1,6 @@
 IDEA
 fake
 dist
+*/WEB-INF/classes/*
+*/WEB-INF/lib/*
 

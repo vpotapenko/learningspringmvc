@@ -28,7 +28,7 @@
         </copy>
     </target>
 
-    <target name="war" description="Create a war file">
+    <target name="war" depends="libs, javac" description="Create a war file">
         <zip destfile="dist/learningspringmvc.war" >
             <fileset dir="war">
                 <include name="**/*.*"/>
