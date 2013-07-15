@@ -17,4 +17,17 @@
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven />
 
+    <bean id="jsonConverter"
+          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        <property name="supportedMediaTypes" value="application/json"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonConverter"/>
+            </list>
+        </property>
+    </bean>
+
 </beans>

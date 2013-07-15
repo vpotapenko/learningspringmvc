@@ -1,7 +1,10 @@
 package com.learningspringmvc;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,4 +22,14 @@ public class HomeController {
         return "WEB-INF/views/home.jsp";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/emp/{id}",
+            headers = "Accept=application/json")
+    public
+    @ResponseBody
+    Employee getEmployee(@PathVariable String id) {
+        Employee empl = new Employee();
+        empl.setId(id);
+        empl.setName("Some Name");
+        return empl;
+    }
 }
