@@ -1,6 +1,7 @@
 package com.learningspringmvc;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,5 +32,14 @@ public class HomeController {
         empl.setId(id);
         empl.setName("Some Name");
         return empl;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String form(Model model) {
+        Employee employee = new Employee();
+        employee.setId("1");
+        employee.setName("New employee");
+        model.addAttribute(employee);
+        return "WEB-INF/views/form.jsp";
     }
 }
