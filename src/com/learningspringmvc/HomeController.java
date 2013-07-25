@@ -2,10 +2,8 @@ package com.learningspringmvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -41,5 +39,26 @@ public class HomeController {
         employee.setName("New employee");
         model.addAttribute(employee);
         return "WEB-INF/views/form.jsp";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/form2")
+    public String form2(Model model) {
+        Employee employee = new Employee();
+        employee.setId("1");
+        employee.setName("New employee");
+        model.addAttribute(employee);
+        System.out.println("entered into /form2");
+        return "WEB-INF/views/form2.jsp";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/form2Post")
+    public String form2Post(Employee employee) {
+        System.out.println("employee = [" + employee.getId() + ", " + employee.getName() + "]");
+        return "WEB-INF/views/home.jsp";
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.setDisallowedFields("fake", "name");
     }
 }
