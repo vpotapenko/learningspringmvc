@@ -2,8 +2,11 @@ package com.learningspringmvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Created with IntelliJ IDEA.
@@ -52,13 +55,13 @@ public class HomeController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/form2Post")
-    public String form2Post(Employee employee) {
+    public String form2Post(@Valid Employee employee, BindingResult result) {
         System.out.println("employee = [" + employee.getId() + ", " + employee.getName() + "]");
-        return "WEB-INF/views/home.jsp";
+        return (result.hasErrors() ? "WEB-INF/views/form2.jsp" : "WEB-INF/views/home.jsp");
     }
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.setDisallowedFields("fake", "name");
+        binder.setDisallowedFields("fake");
     }
 }
