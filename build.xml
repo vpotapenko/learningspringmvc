@@ -11,6 +11,7 @@
         <copy todir="war/WEB-INF/lib" flatten="true">
             <fileset dir="lib">
                 <include name="**/*.jar"/>
+                <exclude name="**/provided/**"/>
             </fileset>
         </copy>
     </target>
